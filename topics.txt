@@ -1,0 +1,8 @@
+http
+api calling
+json and xml
+api data and post
+toast
+snackbar
+shered preferences
+api call with post method and get
