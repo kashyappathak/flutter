@@ -1,0 +1,76 @@
+// import 'dart:async';
+import 'package:flutter/material.dart'; //importing packages in flutter
+//import 'package:fluttertoast/fluttertoast.dart';
+import   'package:audioplayers/audioplayers.dart'; 
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:http/http.dart' as http;
+// import 'dart:convert';
+
+void main() {
+  runApp(
+    MaterialApp(
+        home: MyApp(),
+        title:
+            'KASHYAP PATHAK', //app name shown from package name and for main title this is.
+        theme: ThemeData(primarySwatch: Colors.yellow)),
+  ); //for run a code here class MyApp for run
+}
+
+//shortcut for stateless is stl
+class MyApp extends StatelessWidget {
+  //stateless widget class
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MyScreen(); //return to statefullwidget of MyScreen class
+  }
+}
+
+//shortcut for stateless is stf
+class MyScreen extends StatefulWidget {
+  const MyScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MyScreen> createState() => _MyScreenState();
+}
+
+class _MyScreenState extends State<MyScreen> {
+  AudioPlayer audioPlayer = AudioPlayer();
+  String katiaudiopath = "music/kati.mp3";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      //scaffold
+      appBar: AppBar(
+        //appbar for show scaffold title
+        title: Text('KASHYAP PATHAK'), //title of scaffold
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+                onPressed: () async {
+                  await audioPlayer.play(AssetSource(katiaudiopath));
+                  print('PLAYED');
+                },
+                child: Text("play")),
+            ElevatedButton(
+                onPressed: () async {
+                  await audioPlayer.pause();
+                  print('PAUSE');
+                },
+                child: Text("pause")),
+            ElevatedButton(
+                onPressed: () async {
+                  await audioPlayer.stop();
+                  print('STOP');
+                },
+                child: Text("stop")),
+          ],
+        ),
+      ),
+    );
+  }
+}
